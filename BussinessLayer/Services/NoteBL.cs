@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Interfaces;
 using CommonLayer.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Migrations;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BussinessLayer.Services
 {
@@ -141,5 +143,18 @@ namespace BussinessLayer.Services
                 throw;
             }
         }
+        public async Task<IEnumerable<NoteEntity>> SearchNote(string title, int userid)
+        {
+            try
+            {
+                return await _iNoteRL.SearchNote(title, userid);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
     }
 }

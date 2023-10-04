@@ -21,7 +21,7 @@ namespace CommonLayer
                 message.IsBodyHtml = true;
 
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);                
-                System.Net.NetworkCredential credential = new System.Net.NetworkCredential("barelasubhash16@gmail.com", "oezf pfqq pslz syyi");
+                System.Net.NetworkCredential credential = new System.Net.NetworkCredential("barelasubhash16@gmail.com", "cviv saoq srkr jcou");
 
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;

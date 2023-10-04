@@ -16,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using RepositoryLayer.Context;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Services;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,11 @@ namespace FundooApplication
             services.AddTransient<IUserBL, UserBL>();
             services.AddTransient<IUserRepo, UserRepo>();
             services.AddTransient<INoteBL, NoteBL>();
-            services.AddTransient<INoteRL, NoteRL>();
+            services.AddTransient<INoteRL, NoteRL>(); 
+            services.AddTransient<ILabelBL, LabelBL>();
+            services.AddTransient<ILabelRepo, LabelRepo>();
+            services.AddTransient<ICollaboratorBL, CollaboratorBL>();
+            services.AddTransient<ICollaboratorRepo, CollaboratorRepo>();
             services.AddSwaggerGen();
             ConfigureSwagger(services);
             services.AddMassTransit(x =>
@@ -57,7 +62,8 @@ namespace FundooApplication
                 }));
             });
             services.AddMassTransitHostedService();
-
+            // Add Logger Service
+           
             //Add service for Reddis Cache
             services.AddStackExchangeRedisCache(options =>
             {
@@ -90,7 +96,10 @@ namespace FundooApplication
                     IssuerSigningKey =new SymmetricSecurityKey(key)
                 };
             });
+          
         }
+        // Add  Serilog Logger Service
+       
         //Configure Swagger...............
         public static void ConfigureSwagger(IServiceCollection services)
         {

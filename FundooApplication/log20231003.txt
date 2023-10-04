@@ -1,0 +1,25 @@
+2023-10-03 18:22:15.384 +05:30 [INF] User profile is available. Using 'C:\Users\Shiva027\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-10-03 18:22:16.889 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-10-03 18:22:16.915 +05:30 [INF] Hosting environment: Development
+2023-10-03 18:22:16.925 +05:30 [INF] Content root path: C:\Users\Shiva027\Desktop\FundooNotes\FundooApplication\FundooApplication
+2023-10-03 18:22:16.989 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/Swagger/index.html  
+2023-10-03 18:22:17.798 +05:30 [INF] Request finished in 818.7809ms 200 text/html;charset=utf-8
+2023-10-03 18:22:17.859 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/_vs/browserLink  
+2023-10-03 18:22:17.859 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/_framework/aspnetcore-browser-refresh.js  
+2023-10-03 18:22:17.935 +05:30 [INF] Request finished in 74.9884ms 200 application/javascript; charset=utf-8
+2023-10-03 18:22:18.101 +05:30 [INF] Request finished in 242.8227ms 200 text/javascript; charset=UTF-8
+2023-10-03 18:22:18.289 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/swagger/v1/swagger.json  
+2023-10-03 18:22:18.665 +05:30 [INF] Request finished in 377.311ms 200 application/json;charset=utf-8
+2023-10-03 18:22:54.432 +05:30 [INF] Request starting HTTP/2.0 POST https://localhost:44355/api/User/Login application/json 65
+2023-10-03 18:22:54.607 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.UserController.LoginUser (FundooApplication)'
+2023-10-03 18:22:54.682 +05:30 [INF] Route matched with {action = "LoginUser", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult LoginUser(RepositoryLayer.Entity.UserLogin) on controller FundooApplication.Controllers.UserController (FundooApplication).
+2023-10-03 18:22:55.717 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-03 18:22:59.744 +05:30 [INF] Executed DbCommand (98ms) [Parameters=[@__login_EmailId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[UserId], [u].[EmailId], [u].[FirstName], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[EmailId] = @__login_EmailId_0
+2023-10-03 18:23:00.021 +05:30 [INF] User Login Succesfully
+2023-10-03 18:23:00.034 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType7`3[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-03 18:23:00.051 +05:30 [INF] Executed action FundooApplication.Controllers.UserController.LoginUser (FundooApplication) in 5358.0834ms
+2023-10-03 18:23:00.054 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.UserController.LoginUser (FundooApplication)'
+2023-10-03 18:23:00.062 +05:30 [INF] Request finished in 5632.8188ms 200 application/json; charset=utf-8

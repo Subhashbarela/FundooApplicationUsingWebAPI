@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Logging;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Migrations;
@@ -24,12 +25,14 @@ namespace FundooApplication.Controllers
        
         private readonly IUserBL _userBL;
         private readonly FundooContext _fundooContext;
-        private readonly IBus _bus;       
-        public UserController(IUserBL userBL, FundooContext fundooContext, IBus bus)
+        private readonly IBus _bus;  
+        private readonly ILogger<UserController> _logger;
+        public UserController(IUserBL userBL, FundooContext fundooContext, IBus bus, ILogger<UserController> logger)
         {
             _userBL = userBL;
             _fundooContext = fundooContext;
             _bus = bus;
+            _logger = logger;
            
         }
         [HttpPost("Register")]
@@ -45,15 +48,19 @@ namespace FundooApplication.Controllers
                 var result =  _userBL.UserRegister(registerModel);
                 if (result != null)
                 {
+                    _logger.LogInformation("User Registration Succesfull");
                     return Ok(new ResponseModel<UserEntity>{ Status = true,Message = "User Registration SuccessFully", Data = result }); 
                 }
                 else
                 {
+                    _logger.LogInformation("User Registration UnSuccesfull");
                     return BadRequest(new { Status = false,Message = "User Registration UnSuccessFully" });                   
                 }
             }
             catch(Exception ex)
             {
+                _logger.LogError("Some exception are occure ");
+
                 return BadRequest(new { Status = false, Message = ex.Message});
             }          
         }
@@ -70,11 +77,13 @@ namespace FundooApplication.Controllers
                 
                     if (result != null)
                     {
-                        return Ok(new  {  Status = true, Message = "User Registration SuccessFully",Data = result });
+                    _logger.LogInformation("User Login Succesfully");
+                    return Ok(new  {  Status = true, Message = "User Registration SuccessFully",Data = result });
                     }
                     else
                     {
-                        return BadRequest(new { Status = false,Message = "User Registration UnSuccessFully" });
+                    _logger.LogError("Try again to login"); 
+                    return BadRequest(new { Status = false,Message = "User Registration UnSuccessFully" });
                     }                
             }
             catch(Exception ex)
@@ -94,7 +103,6 @@ namespace FundooApplication.Controllers
                     Send send= new Send();
                     ForgotPasswordModel forgotPasswordModel =_userBL.UserForgotPassword(email);
                     send.SendingMail(forgotPasswordModel.Email, forgotPasswordModel.Token);
-
                     Uri uri = new Uri("rabbitmq://localhost//FundoNotesEmail_Queue");
                     var endPoint = await _bus.GetSendEndpoint(uri);
 

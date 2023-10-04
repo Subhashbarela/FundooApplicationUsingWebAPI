@@ -1,56 +1,59 @@
-﻿using CommonLayer.Models;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using RepositoryLayer.Context;
-using RepositoryLayer.Entity;
-using RepositoryLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="UserRepo.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace RepositoryLayer.Services
 {
-    public class UserRepo:IUserRepo
-    {  
-        private readonly IConfiguration _config;
-        private readonly FundooContext _fundooContext;
+    using System;
+    using System.Collections.Generic;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Text;
+    using System.Threading.Tasks;
+    using CommonLayer.Models;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.IdentityModel.Tokens;
+    using RepositoryLayer.Context;
+    using RepositoryLayer.Entity;
+    using RepositoryLayer.Interfaces;
+
+    public class UserRepo : IUserRepo
+    {
+        private readonly IConfiguration config;
+        private readonly FundooContext fundooContext;
+
         public UserRepo(FundooContext fundooContext, IConfiguration config)
         {
-            _fundooContext = fundooContext;
-            _config = config;
+            this.fundooContext = fundooContext;
+            this.config = config;
         }
+
         public UserEntity UserRegister(RegisterModel register)
         {
             UserEntity userEntity = new UserEntity();
-            userEntity.FirstName= register.FirstName;
-            userEntity.LastName= register.LastName;
-            userEntity.EmailId= register.EmailId;
+            userEntity.FirstName = register.FirstName;
+            userEntity.LastName = register.LastName;
+            userEntity.EmailId = register.EmailId;
             userEntity.Password = EncryptPass(register.Password);
 
-           _fundooContext.User.AddAsync(userEntity);
-            _fundooContext.SaveChanges();
+            this.fundooContext.User.AddAsync(userEntity);
+            this.fundooContext.SaveChanges();
             return userEntity;
-
         }
-        public string  Login(UserLogin login)
+
+        public string Login(UserLogin login)
         {
-            UserEntity user = _fundooContext.User.SingleOrDefault(e => e.EmailId == login.EmailId);
-            if (IsValidPass(DecryptPass(user.Password), login.Password))
+            UserEntity user = this.fundooContext.User.SingleOrDefault(e => e.EmailId == login.EmailId);
+            if (this.IsValidPass(DecryptPass(user.Password), login.Password))
             {
-               
-                var token = GenerateJWToken(login.EmailId, user.UserId);
+                var token = this.GenerateJWToken(login.EmailId, user.UserId);
                 return token;
             }
+
             return null;
         }
-        private bool IsValidPass(string storePass,string prevPass)
-        {
-            return storePass==prevPass;
-        }
+
         public static string EncryptPass(string password)
         {
             if (string.IsNullOrEmpty(password))
@@ -63,8 +66,8 @@ namespace RepositoryLayer.Services
                 string encryptedPass = Convert.ToBase64String(storePass);
                 return encryptedPass;
             }
-           
-        } 
+        }
+
         public static string DecryptPass(string password)
         {
             if (string.IsNullOrEmpty(password))
@@ -76,58 +79,65 @@ namespace RepositoryLayer.Services
                 byte[] encryptedPass = Convert.FromBase64String(password);
                 string decryptedPass = ASCIIEncoding.ASCII.GetString(encryptedPass);
                 return decryptedPass;
-            }           
+            }
         }
-        public string GenerateJWToken(string  EmailId,int UserId)
+
+        public string GenerateJWToken(string emailId, int userId)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim("Email",EmailId),
-                new Claim("UserId",UserId.ToString())
+                new Claim("Email", emailId),
+                new Claim("UserId", userId.ToString()),
             };
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-                _config["Jwt:Audience"],
+            var token = new JwtSecurityToken(
+                this.config["Jwt:Issuer"],
+                this.config["Jwt:Audience"],
                 claims,
                 expires: DateTime.Now.AddMinutes(15),
                 signingCredentials: credentials);
 
-
             return new JwtSecurityTokenHandler().WriteToken(token);
-
         }
+
         public ForgotPasswordModel UserForgotPassword(string email)
         {
             try
             {
-                var result = _fundooContext.User.Where(e => e.EmailId == email).FirstOrDefault();
+                var result = this.fundooContext.User.Where(e => e.EmailId == email).FirstOrDefault();
                 ForgotPasswordModel forgotPasswordModel = new ForgotPasswordModel();
                 forgotPasswordModel.Email = result.EmailId;
-                forgotPasswordModel.Token = GenerateJWToken(result.EmailId, result.UserId);
+                forgotPasswordModel.Token = this.GenerateJWToken(result.EmailId, result.UserId);
                 forgotPasswordModel.UserID = result.UserId;
 
                 return forgotPasswordModel;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public bool ResetPassword(UserResetPasswordModel model,string email)
+
+        public bool ResetPassword(UserResetPasswordModel model, string email)
         {
             try
             {
-                var result= _fundooContext.User.Where(e =>e.EmailId == email).FirstOrDefault();
+                var result = this.fundooContext.User.Where(e => e.EmailId == email).FirstOrDefault();
                 result.Password = EncryptPass(model.ConfirmPassword);
-                _fundooContext.SaveChanges();
+                this.fundooContext.SaveChanges();
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
                 throw ex;
             }
         }
 
-       
+        private bool IsValidPass(string storePass, string prevPass)
+        {
+            return storePass == prevPass;
+        }
     }
 }

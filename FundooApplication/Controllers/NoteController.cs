@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using RepositoryLayer.Entity;
 using System.Drawing;
+using Microsoft.Extensions.Logging;
 
 namespace FundooApplication.Controllers
 {
@@ -25,6 +26,7 @@ namespace FundooApplication.Controllers
         {
             _inoteBL = inoteBL;
             _distributedCache = distributedCache;
+           
         }
         [Authorize]
         [HttpPost("Add")]
@@ -234,7 +236,7 @@ namespace FundooApplication.Controllers
                 throw ex;
             }
         }
-        [HttpPut("Remember/{id}")]
+        [HttpPut("Remember")]
         public IActionResult IsReminder(long noteid, DateTime reminder)
         {
             try
@@ -279,6 +281,27 @@ namespace FundooApplication.Controllers
                 return StatusCode(500, new { Success = false, Message = "Error while uploading image", Error = ex.Message });
             }
         }
-
+        [HttpGet("Search")]
+        public async  Task<ActionResult<NoteEntity>> SearchNote( string title)
+        {
+            try
+            {
+                int userid = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
+                var result= await _inoteBL.SearchNote(title, userid);
+                if(result.Any())
+                {
+                    return Ok(new { Success = true, message = "Note Name is find", data=result });
+                }
+                else
+                {
+                    return BadRequest(new { Success = false, message = "Note name not found" });
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+               "Error retrieving data from the database");
+            }
+        }
     }
 }

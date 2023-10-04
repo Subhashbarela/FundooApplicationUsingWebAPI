@@ -1,0 +1,133 @@
+2023-10-04 11:13:12.990 +05:30 [INF] User profile is available. Using 'C:\Users\Shiva027\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-10-04 11:13:14.180 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-10-04 11:13:14.188 +05:30 [INF] Hosting environment: Development
+2023-10-04 11:13:14.205 +05:30 [INF] Content root path: C:\Users\Shiva027\Desktop\FundooNotes\FundooApplication\FundooApplication
+2023-10-04 11:13:14.258 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/Swagger/index.html  
+2023-10-04 11:13:14.825 +05:30 [INF] Request finished in 572.6546ms 200 text/html;charset=utf-8
+2023-10-04 11:13:14.857 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/_framework/aspnetcore-browser-refresh.js  
+2023-10-04 11:13:14.858 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/_vs/browserLink  
+2023-10-04 11:13:15.043 +05:30 [INF] Request finished in 186.1127ms 200 application/javascript; charset=utf-8
+2023-10-04 11:13:15.222 +05:30 [INF] Request finished in 363.8936ms 200 text/javascript; charset=UTF-8
+2023-10-04 11:13:15.467 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/swagger/v1/swagger.json  
+2023-10-04 11:13:15.804 +05:30 [INF] Request finished in 337.9585ms 200 application/json;charset=utf-8
+2023-10-04 11:13:57.102 +05:30 [INF] Request starting HTTP/2.0 POST https://localhost:44355/api/User/Login application/json 65
+2023-10-04 11:13:57.380 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.UserController.LoginUser (FundooApplication)'
+2023-10-04 11:13:57.469 +05:30 [INF] Route matched with {action = "LoginUser", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult LoginUser(RepositoryLayer.Entity.UserLogin) on controller FundooApplication.Controllers.UserController (FundooApplication).
+2023-10-04 11:13:58.716 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:14:02.943 +05:30 [INF] Executed DbCommand (154ms) [Parameters=[@__login_EmailId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[UserId], [u].[EmailId], [u].[FirstName], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[EmailId] = @__login_EmailId_0
+2023-10-04 11:14:03.519 +05:30 [INF] User Login Succesfully
+2023-10-04 11:14:03.529 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType7`3[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-04 11:14:03.554 +05:30 [INF] Executed action FundooApplication.Controllers.UserController.LoginUser (FundooApplication) in 6068.7643ms
+2023-10-04 11:14:03.557 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.UserController.LoginUser (FundooApplication)'
+2023-10-04 11:14:03.567 +05:30 [INF] Request finished in 6468.6858ms 200 application/json; charset=utf-8
+2023-10-04 11:20:52.594 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/api/Note/Get  
+2023-10-04 11:20:52.735 +05:30 [INF] Successfully validated the token.
+2023-10-04 11:20:52.740 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.NoteController.GetNotes (FundooApplication)'
+2023-10-04 11:20:52.749 +05:30 [INF] Route matched with {action = "GetNotes", controller = "Note"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetNotes() on controller FundooApplication.Controllers.NoteController (FundooApplication).
+2023-10-04 11:20:52.809 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:20:53.062 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[NoteID], [n].[Color], [n].[Createat], [n].[Image], [n].[IsArchive], [n].[IsPin], [n].[IsTrash], [n].[Modifiedat], [n].[Note], [n].[Reminder], [n].[Title], [n].[UserId]
+FROM [Notes] AS [n]
+WHERE [n].[UserId] = @__UserId_0
+2023-10-04 11:20:53.118 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType3`3[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[RepositoryLayer.Entity.NoteEntity, RepositoryLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-04 11:20:53.137 +05:30 [INF] Executed action FundooApplication.Controllers.NoteController.GetNotes (FundooApplication) in 384.4951ms
+2023-10-04 11:20:53.141 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.NoteController.GetNotes (FundooApplication)'
+2023-10-04 11:20:53.144 +05:30 [INF] Request finished in 550.3021ms 200 application/json; charset=utf-8
+2023-10-04 11:21:48.729 +05:30 [INF] Request starting HTTP/2.0 PUT https://localhost:44355/api/Note/Remember/3?noteid=5&reminder=2023-10-03T11%3A28%3A35.407  0
+2023-10-04 11:21:48.755 +05:30 [INF] Successfully validated the token.
+2023-10-04 11:21:48.758 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:21:48.771 +05:30 [INF] Route matched with {action = "IsReminder", controller = "Note"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult IsReminder(Int64, System.DateTime) on controller FundooApplication.Controllers.NoteController (FundooApplication).
+2023-10-04 11:21:48.826 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:21:48.845 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__noteid_0='?' (DbType = Int64), @__userid_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [n].[NoteID], [n].[Color], [n].[Createat], [n].[Image], [n].[IsArchive], [n].[IsPin], [n].[IsTrash], [n].[Modifiedat], [n].[Note], [n].[Reminder], [n].[Title], [n].[UserId]
+FROM [Notes] AS [n]
+WHERE ([n].[NoteID] = @__noteid_0) AND ([n].[UserId] = @__userid_1)
+2023-10-04 11:21:48.851 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType1`2[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-04 11:21:48.857 +05:30 [INF] Executed action FundooApplication.Controllers.NoteController.IsReminder (FundooApplication) in 77.6034ms
+2023-10-04 11:21:48.863 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:21:48.867 +05:30 [INF] Request finished in 139.2783ms 200 application/json; charset=utf-8
+2023-10-04 11:23:42.449 +05:30 [INF] User profile is available. Using 'C:\Users\Shiva027\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-10-04 11:23:43.176 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-10-04 11:23:43.194 +05:30 [INF] Hosting environment: Development
+2023-10-04 11:23:43.197 +05:30 [INF] Content root path: C:\Users\Shiva027\Desktop\FundooNotes\FundooApplication\FundooApplication
+2023-10-04 11:23:43.255 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/Swagger/index.html  
+2023-10-04 11:23:43.548 +05:30 [INF] Request finished in 301.726ms 200 text/html;charset=utf-8
+2023-10-04 11:23:43.572 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/_framework/aspnetcore-browser-refresh.js  
+2023-10-04 11:23:43.599 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/_vs/browserLink  
+2023-10-04 11:23:43.610 +05:30 [INF] Request finished in 38.5208ms 200 application/javascript; charset=utf-8
+2023-10-04 11:23:43.740 +05:30 [INF] Request finished in 141.5896ms 200 text/javascript; charset=UTF-8
+2023-10-04 11:23:43.925 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/swagger/v1/swagger.json  
+2023-10-04 11:23:44.199 +05:30 [INF] Request finished in 274.7173ms 200 application/json;charset=utf-8
+2023-10-04 11:24:16.606 +05:30 [INF] Request starting HTTP/2.0 POST https://localhost:44355/api/User/Login application/json 65
+2023-10-04 11:24:16.769 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.UserController.LoginUser (FundooApplication)'
+2023-10-04 11:24:16.826 +05:30 [INF] Route matched with {action = "LoginUser", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult LoginUser(RepositoryLayer.Entity.UserLogin) on controller FundooApplication.Controllers.UserController (FundooApplication).
+2023-10-04 11:24:17.865 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:24:18.753 +05:30 [INF] Executed DbCommand (95ms) [Parameters=[@__login_EmailId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[UserId], [u].[EmailId], [u].[FirstName], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[EmailId] = @__login_EmailId_0
+2023-10-04 11:24:19.069 +05:30 [INF] User Login Succesfully
+2023-10-04 11:24:19.076 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType7`3[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-04 11:24:19.090 +05:30 [INF] Executed action FundooApplication.Controllers.UserController.LoginUser (FundooApplication) in 2255.5254ms
+2023-10-04 11:24:19.094 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.UserController.LoginUser (FundooApplication)'
+2023-10-04 11:24:19.102 +05:30 [INF] Request finished in 2499.9229ms 200 application/json; charset=utf-8
+2023-10-04 11:25:04.984 +05:30 [INF] Request starting HTTP/2.0 GET https://localhost:44355/api/Note/Get  
+2023-10-04 11:25:05.198 +05:30 [INF] Successfully validated the token.
+2023-10-04 11:25:05.209 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.NoteController.GetNotes (FundooApplication)'
+2023-10-04 11:25:05.224 +05:30 [INF] Route matched with {action = "GetNotes", controller = "Note"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetNotes() on controller FundooApplication.Controllers.NoteController (FundooApplication).
+2023-10-04 11:25:05.344 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:25:05.386 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[@__UserId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[NoteID], [n].[Color], [n].[Createat], [n].[Image], [n].[IsArchive], [n].[IsPin], [n].[IsTrash], [n].[Modifiedat], [n].[Note], [n].[Reminder], [n].[Title], [n].[UserId]
+FROM [Notes] AS [n]
+WHERE [n].[UserId] = @__UserId_0
+2023-10-04 11:25:05.532 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType3`3[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[RepositoryLayer.Entity.NoteEntity, RepositoryLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-04 11:25:05.569 +05:30 [INF] Executed action FundooApplication.Controllers.NoteController.GetNotes (FundooApplication) in 337.7485ms
+2023-10-04 11:25:05.578 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.NoteController.GetNotes (FundooApplication)'
+2023-10-04 11:25:05.584 +05:30 [INF] Request finished in 601.5891ms 200 application/json; charset=utf-8
+2023-10-04 11:25:43.599 +05:30 [INF] Request starting HTTP/2.0 PUT https://localhost:44355/api/Note/Remember?noteid=3&reminder=2023-09-29T08%3A32%3A38.339  0
+2023-10-04 11:25:43.629 +05:30 [INF] Successfully validated the token.
+2023-10-04 11:25:43.643 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:25:43.653 +05:30 [INF] Route matched with {action = "IsReminder", controller = "Note"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult IsReminder(Int64, System.DateTime) on controller FundooApplication.Controllers.NoteController (FundooApplication).
+2023-10-04 11:25:43.705 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:25:43.745 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__noteid_0='?' (DbType = Int64), @__userid_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [n].[NoteID], [n].[Color], [n].[Createat], [n].[Image], [n].[IsArchive], [n].[IsPin], [n].[IsTrash], [n].[Modifiedat], [n].[Note], [n].[Reminder], [n].[Title], [n].[UserId]
+FROM [Notes] AS [n]
+WHERE ([n].[NoteID] = @__noteid_0) AND ([n].[UserId] = @__userid_1)
+2023-10-04 11:25:43.751 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType1`2[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-04 11:25:43.760 +05:30 [INF] Executed action FundooApplication.Controllers.NoteController.IsReminder (FundooApplication) in 101.2245ms
+2023-10-04 11:25:43.765 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:25:43.770 +05:30 [INF] Request finished in 171.754ms 200 application/json; charset=utf-8
+2023-10-04 11:27:53.585 +05:30 [INF] Request starting HTTP/2.0 PUT https://localhost:44355/api/Note/Remember?noteid=3&reminder=2023-09-29T08%3A32%3A38.339  0
+2023-10-04 11:27:53.605 +05:30 [INF] Successfully validated the token.
+2023-10-04 11:27:53.613 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:27:53.621 +05:30 [INF] Route matched with {action = "IsReminder", controller = "Note"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult IsReminder(Int64, System.DateTime) on controller FundooApplication.Controllers.NoteController (FundooApplication).
+2023-10-04 11:29:07.411 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:29:07.443 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__noteid_0='?' (DbType = Int64), @__userid_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [n].[NoteID], [n].[Color], [n].[Createat], [n].[Image], [n].[IsArchive], [n].[IsPin], [n].[IsTrash], [n].[Modifiedat], [n].[Note], [n].[Reminder], [n].[Title], [n].[UserId]
+FROM [Notes] AS [n]
+WHERE ([n].[NoteID] = @__noteid_0) AND ([n].[UserId] = @__userid_1)
+2023-10-04 11:31:36.566 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType1`2[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2023-10-04 11:31:36.648 +05:30 [INF] Executed action FundooApplication.Controllers.NoteController.IsReminder (FundooApplication) in 223020.9709ms
+2023-10-04 11:31:36.654 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:31:36.659 +05:30 [INF] Request finished in 223073.7735ms 200 application/json; charset=utf-8
+2023-10-04 11:31:42.936 +05:30 [INF] Request starting HTTP/2.0 PUT https://localhost:44355/api/Note/Remember?noteid=3&reminder=2023-09-29T08%3A32%3A38.339  0
+2023-10-04 11:31:42.943 +05:30 [INF] Successfully validated the token.
+2023-10-04 11:31:42.977 +05:30 [INF] Executing endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:31:43.008 +05:30 [INF] Route matched with {action = "IsReminder", controller = "Note"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult IsReminder(Int64, System.DateTime) on controller FundooApplication.Controllers.NoteController (FundooApplication).
+2023-10-04 11:31:47.627 +05:30 [INF] Entity Framework Core 3.1.0 initialized 'FundooContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-10-04 11:31:47.636 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__noteid_0='?' (DbType = Int64), @__userid_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [n].[NoteID], [n].[Color], [n].[Createat], [n].[Image], [n].[IsArchive], [n].[IsPin], [n].[IsTrash], [n].[Modifiedat], [n].[Note], [n].[Reminder], [n].[Title], [n].[UserId]
+FROM [Notes] AS [n]
+WHERE ([n].[NoteID] = @__noteid_0) AND ([n].[UserId] = @__userid_1)
+2023-10-04 11:31:47.830 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Notes] SET [Reminder] = @p0
+WHERE [NoteID] = @p1;
+SELECT @@ROWCOUNT;
+2023-10-04 11:31:47.869 +05:30 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType2`3[[System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[RepositoryLayer.Entity.NoteEntity, RepositoryLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-10-04 11:31:47.877 +05:30 [INF] Executed action FundooApplication.Controllers.NoteController.IsReminder (FundooApplication) in 4859.8392ms
+2023-10-04 11:31:47.880 +05:30 [INF] Executed endpoint 'FundooApplication.Controllers.NoteController.IsReminder (FundooApplication)'
+2023-10-04 11:31:47.883 +05:30 [INF] Request finished in 4946.6848ms 200 application/json; charset=utf-8

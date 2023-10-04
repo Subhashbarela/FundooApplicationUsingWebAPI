@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace RepositoryLayer.Migrations
+﻿namespace RepositoryLayer.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class Notes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,7 @@ namespace RepositoryLayer.Migrations
                     IsPin = table.Column<bool>(nullable: false),
                     IsTrash = table.Column<bool>(nullable: false),
                     Createat = table.Column<DateTime>(nullable: true),
-                    Modifiedat = table.Column<DateTime>(nullable: true)
+                    Modifiedat = table.Column<DateTime>(nullable: true),
                 },
                 constraints: table =>
                 {

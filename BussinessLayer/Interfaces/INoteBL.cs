@@ -4,6 +4,7 @@ using RepositoryLayer.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BussinessLayer.Interfaces
 {
@@ -20,5 +21,6 @@ namespace BussinessLayer.Interfaces
         public NoteEntity Color(long noteid, int userid, string color);
         public NoteEntity IsRememberOrNot(long noteid, int userid, DateTime reminder);
         public string UploadImage(long noteid, int userid, IFormFile img);
+        public Task<IEnumerable<NoteEntity>> SearchNote(string title, int userid);
     }
 }
